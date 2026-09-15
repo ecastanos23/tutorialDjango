@@ -31,7 +31,7 @@ Hemos separado las responsabilidades para evitar el antipatrón de la "Vista Gor
 
 ---
 
-## 🛠️ Instalación y Configuración
+##  Instalación y Configuración
 
 Siga estos pasos para poner en marcha el entorno local:
 
