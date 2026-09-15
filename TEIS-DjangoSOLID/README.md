@@ -1,10 +1,10 @@
-# 🚀 Django Clean Monolith: De Spaghetti a Grado Empresarial
+#  Django Clean Monolith: De Spaghetti a Grado Empresarial
 
 Este proyecto es una guía práctica para transformar una aplicación de Django tradicional en un sistema con arquitectura de capas, siguiendo principios de ingeniería de software utilizados en consultoría de alto nivel.
 
 ---
 
-## 🏗️ Resumen de la Arquitectura
+##  Resumen de la Arquitectura
 
 Hemos separado las responsabilidades para evitar el antipatrón de la "Vista Gorda" (Fat View), organizando el código en las siguientes capas:
 
@@ -21,7 +21,7 @@ Hemos separado las responsabilidades para evitar el antipatrón de la "Vista Gor
 
 ---
 
-## 🛡️ Principios SOLID Aplicados
+##  Principios SOLID Aplicados
 
 1. **S - Single Responsibility:** Cada clase tiene una sola razón para existir. El `CalculadorImpuestos` no sabe de bases de datos; la `View` no sabe de impuestos.
 2. **O - Open/Closed:** El sistema está abierto a nuevas reglas de negocio (ej. nuevos impuestos) sin necesidad de modificar el flujo principal de compra.
@@ -62,7 +62,7 @@ Inventario.objects.create(libro=l, cantidad=5)
 python manage.py runserver
 ```
 
-## 📂 Estructura de Archivos (App: tienda_app)
+##  Estructura de Archivos (App: tienda_app)
 ```
 tienda/
 ├── api/               # Lógica de servicios para APIs
