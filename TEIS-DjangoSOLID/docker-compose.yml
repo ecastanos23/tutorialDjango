@@ -16,12 +16,10 @@ services:
   # Servicio de tu API Django
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn Tienda.wsgi:application --bind 0.0.0.0:8000
     volumes:
       # Hot-Reload: Mapeamos la carpeta actual para que los cambios de código se reflejen sin reiniciar
       - .:/app
-    ports:
-      - "8000:8000"
     depends_on:
       - db
     environment:
@@ -31,6 +29,16 @@ services:
       - DB_PASSWORD=secret_password
       - DB_HOST=db  # ¡OJO! Aquí usamos el nombre del servicio 'db' como host
       - DB_PORT=5432
+
+  # Servicio Nginx (proxy inverso hacia Gunicorn)
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
 
 # Definición del volumen persistente
 volumes:
