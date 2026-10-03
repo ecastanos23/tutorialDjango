@@ -1,10 +1,22 @@
 from rest_framework import status
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from tienda_app.infra.factories import PaymentFactory
+from tienda_app.models import Libro
 from tienda_app.services import CompraService
 
-from .serializers import OrdenInputSerializer
+from .serializers import LibroSerializer, OrdenInputSerializer
+
+
+class ProductosAPIView(ListAPIView):
+    """
+    Listado de productos (libros) con su stock.
+    GET /api/v1/productos/
+    """
+
+    queryset = Libro.objects.select_related('inventario').all()
+    serializer_class = LibroSerializer
 
 
 class CompraAPIView(APIView):

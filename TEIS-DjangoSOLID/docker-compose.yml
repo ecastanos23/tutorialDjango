@@ -30,6 +30,10 @@ services:
       - DB_HOST=db  # ¡OJO! Aquí usamos el nombre del servicio 'db' como host
       - DB_PORT=5432
 
+  # Microservicio Flask (v2) - Strangler Pattern. Sin puertos publicados: Nginx lo alcanza por la red de Docker
+  pagos_flask:
+    build: ./microservicio_pagos
+
   # Servicio Nginx (proxy inverso hacia Gunicorn)
   nginx:
     image: nginx:1.25-alpine
@@ -39,6 +43,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - web
+      - pagos_flask
 
 # Definición del volumen persistente
 volumes:
